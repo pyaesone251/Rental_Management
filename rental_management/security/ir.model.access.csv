@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_rental_equipment_user,rental.equipment.user,model_rental_equipment,,1,1,1,1
+access_rental_order_user,rental.order.user,model_rental_order,,1,1,1,1
+access_rental_return_wizard_user,rental.return.wizard.user,model_rental_return_wizard,,1,1,1,1

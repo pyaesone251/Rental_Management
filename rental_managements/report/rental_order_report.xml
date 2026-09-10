@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- CONCEPT: ir.actions.report က ("Print" button) တစ်ခုကို QWeb template နဲ့ ချိတ်ပေးတယ်။
+         report_name က အောက်က <template> ရဲ့ "module_name.template_id" ဖြစ်ရမယ်။ -->
+    <record id="action_report_rental_order" model="ir.actions.report">
+        <field name="name">Rental Agreement</field>
+        <field name="model">rental.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">rental_management.report_rental_order_document</field>
+        <field name="report_file">rental_management.report_rental_order_document</field>
+        <field name="print_report_name">'Rental Agreement - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_rental_order"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

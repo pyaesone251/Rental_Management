@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_rental_order_list" model="ir.ui.view">
+        <field name="name">rental.order.list</field>
+        <field name="model">rental.order</field>
+        <field name="arch" type="xml">
+            <list string="Rental Orders" decoration-muted="state == 'cancelled'">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="equipment_id"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="rental_days" optional="hide"/>
+                <field name="amount_total" widget="monetary"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'confirmed'"
+                       decoration-success="state == 'returned'"
+                       decoration-danger="state == 'cancelled'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_rental_order_form" model="ir.ui.view">
+        <field name="name">rental.order.form</field>
+        <field name="model">rental.order</field>
+        <field name="arch" type="xml">
+            <form string="Rental Order">
+                <header>
+                    <!-- CONCEPT: model ပေါ်က Python method ခေါ်တဲ့ button တွေ,
+                         state ကိုက်ညီမှသာ ပေါ်ပြအောင် invisible attribute နဲ့ ထိန်းထားတယ် -->
+                    <button name="action_confirm" type="object" string="Confirm"
+                            class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_pickup" type="object" string="Mark Picked Up"
+                            class="btn-primary" invisible="state != 'confirmed'"/>
+                    <button name="action_open_return_wizard" type="object" string="Process Return"
+                            class="btn-primary" invisible="state != 'picked_up'"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                            invisible="state in ('cancelled', 'returned')"/>
+                    <button name="action_reset_to_draft" type="object" string="Reset to Draft"
+                            invisible="state != 'cancelled'"/>
+                    <!-- CONCEPT: statusbar widget က selection field ကို workflow bar အနေနဲ့ visualize လုပ်ပြတယ် -->
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,picked_up,returned"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="equipment_id"/>
+                            <field name="daily_rate"/>
+                        </group>
+                        <group>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="date_actual_return" invisible="not date_actual_return"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="rental_days"/>
+                            <field name="late_fee"/>
+                            <field name="amount_total"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_rental_order" model="ir.actions.act_window">
+        <field name="name">Rental Orders</field>
+        <field name="res_model">rental.order</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_equipment_id': active_id}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first rental order
+            </p>
+        </field>
+    </record>
+</odoo>

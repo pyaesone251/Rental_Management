@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem   id="rental_menu_root"
+                name="Rentals"
+                sequence="1"/>
+
+    <menuitem   id="rental_equipment_views"
+                name="Equipment"
+                parent="rental_menu_root"
+                action="action_rental_equipment"
+                sequence="2" />
+
+    <menuitem   id="rental_order_views"
+                name="Rental Orders"
+                parent="rental_menu_root"
+                action="action_rental_order"
+                sequence="3" />
+</odoo>

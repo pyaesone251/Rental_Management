@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- CONCEPT: Category က Settings > Users ထဲမှာ related security group တွေကို အတူတကွ စုပေးတယ် -->
+    <record id="module_category_rental" model="ir.module.category">
+        <field name="name">Rental Management</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <!-- CONCEPT: အခြေခံ user group - order create/edit လုပ်နိုင်ပေမယ့် delete လုပ်လို့ / config လုပ်လို့ မရဘူး -->
+    <record id="group_rental_user" model="res.groups">
+        <field name="name">Rental User</field>
+        <field name="category_id" ref="module_category_rental"/>
+    </record>
+
+    <!-- CONCEPT: Manager group ဟာ implied_ids နဲ့ User group ရဲ့ ရလဒ်အားလုံးကို inherit လုပ်ထားပြီး,
+         extra right တွေ (delete, equipment master data manage) ထပ်ရတယ် -->
+    <record id="group_rental_manager" model="res.groups">
+        <field name="name">Rental Manager</field>
+        <field name="category_id" ref="module_category_rental"/>
+        <field name="implied_ids" eval="[(4, ref('group_rental_user'))]"/>
+    </record>
+</odoo>

@@ -1,0 +1,23 @@
+{
+    'name':'Rental Management',
+    'version':'1.0',
+    'auto_install':False,
+    'application':True,
+    'installable':True,
+    'sequence':1,
+    'depends':['mail'],
+    'data':[
+        'security/ir.model.access.csv',
+        # 
+        'data/rental_sequence.xml',
+        # 
+        'wizard/rental_return_wizard_views.xml',
+        # 
+        'report/rental_order_report.xml',
+        'report/rental_order_templates.xml',
+        # 
+        'views/rental_equipment_views.xml',
+        'views/rental_order_views.xml',
+        'views/rental_menu.xml',
+    ],
+}

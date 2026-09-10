@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- CONCEPT: ir.sequence က RENT/0001, RENT/0002... လိုမျိုး number auto-generate လုပ်ပေးတယ်။
+         noupdate="1" ဆိုတာ module upgrade လုပ်တဲ့အခါ ဒီ record ကို overwrite/reset မလုပ်ဘူးလို့
+         ဆိုလိုတယ်၊ ဒါမှသာ module update လုပ်တိုင်း sequence counter ပျောက်မသွားမှာပါ။ -->
+    <data noupdate="1">
+        <record id="seq_rental_order" model="ir.sequence">
+            <field name="name">Rental Order Sequence</field>
+            <field name="code">rental.order</field>
+            <field name="prefix">RENT/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

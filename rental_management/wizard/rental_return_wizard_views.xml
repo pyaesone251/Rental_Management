@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_rental_renturn_wizard_form" model="ir.ui.view">
+        <field name="name">rental.return.wizard.form</field>
+        <field name="model">rental.return.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="rental_order_id" readonly="1"/>
+                    <field name="expected_return_date" />
+                    <field name="actual_return_date" />
+                    <field name="equipment_condition" />
+                </group>
+                <group>
+                    <field name="daily_rate" readonly="1"/>
+                    <field name="late_days" readonly="1" />
+                    <field name="late_fee_amount" readonly="1" />
+                    <field name="damage_fee" />
+                </group>
+                <footer>
+                    <button name="action_confirm_return" string="Confirm Return" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
