@@ -24,6 +24,46 @@
                                 </p>
                             </div>
                         </div>
+                        <table class="table table-sm o_main_table">
+                            <thread>
+                                <tr>
+                                    <th>Pickup Date</th>
+                                    <th>Planned Return</th>
+                                    <th>Actual Return</th>
+                                    <th class="text-end" >Rental Days</th>
+                                    <th class="text-end" >Daily Rate</th>
+                                </tr>
+                            </thread>
+                            <tbody>
+                                <tr>
+                                    <td><span t-field="o.date_start"/></td>
+                                    <td><span t-field="o.date_end"/></td>
+                                    <td><span t-field="o.date_actual_return"/></td>
+                                    <td class="text-end" ><span t-field="o.rental_days"/></td>
+                                    <td class="text-end" ><span t-field="o.daily_rate"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row mt-4">
+                            <div class="col-6 table-sm">
+                                <table class="table table-sm">
+                                    <tr>
+                                        <td>Late Fee</td>
+                                        <td class="text-end"><span t-field="o.late_fee"/></td>
+                                    </tr>
+                                    <tr class="border-top">
+                                        <td><strong>Total Amount</strong></td>
+                                        <td class="text-end">
+                                            <strong><span t-field="o.total_amount"/></strong>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <p t-if="o.notes" class="mt-4">
+                            <strong>Notes:</strong> <span t-field="o.notes"/>
+                        </p>
                     </div>
                 </t>
             </t>
